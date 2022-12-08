@@ -66,36 +66,31 @@ namespace ProjectDatMinUAS
             IsMdiContainer = true;
         }
 
-        /// <summary>
-        /// this method will read the excel file and copy its data into a datatable
-        /// </summary>
-        /// <param name="fileName">name of the file</param>
-        /// <returns>DataTable</returns>
+        
         private DataTable ReadExcel(string fileName)
         {
             WorkBook workbook = WorkBook.Load(fileName);
-            //// Work with a single WorkSheet.
-            ////you can pass static sheet name like Sheet1 to get that sheet
-            ////WorkSheet sheet = workbook.GetWorkSheet("Sheet1");
-            //You can also use workbook.DefaultWorkSheet to get default in case you want to get first sheet only
+            
             WorkSheet sheet = workbook.DefaultWorkSheet;
-            //Convert the worksheet to System.Data.DataTable
-            //Boolean parameter sets the first row as column names of your table.
+            
             return sheet.ToDataTable(true);
         }
 
         public void OpenFile(out DataTable data)
         {
             data = new DataTable();
-            OpenFileDialog file = new OpenFileDialog(); //open dialog to choose file
-            if (file.ShowDialog() == DialogResult.OK) //if there is a file chosen by the user
+
+            OpenFileDialog fileDialog = new OpenFileDialog(); //open dialog to choose file
+
+            if (fileDialog.ShowDialog() == DialogResult.OK) //if there is a file chosen by the user
             {
-                string fileExt = Path.GetExtension(file.FileName); //get the file extension
-                if (fileExt.CompareTo(".xls") == 0 || fileExt.CompareTo(".xlsx") == 0)
+                string fileExtension = Path.GetExtension(fileDialog.FileName); //get the file extension
+
+                if (fileExtension.CompareTo(".xls") == 0 || fileExtension.CompareTo(".xlsx") == 0)
                 {
                     try
                     {
-                        data = ReadExcel(file.FileName); //read excel file
+                        data = ReadExcel(fileDialog.FileName); //read excel file
                     }
                     catch (Exception ex)
                     {
@@ -106,6 +101,14 @@ namespace ProjectDatMinUAS
                 {
                     MessageBox.Show("Please choose .xls or .xlsx file only.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error
                 }
+            }
+        }
+
+        public void SetNumberRow(DataGridView dataGrid)
+        {
+            foreach (DataGridViewRow row in dataGrid.Rows)
+            {
+                row.HeaderCell.Value = (row.Index + 1).ToString();
             }
         }
     }

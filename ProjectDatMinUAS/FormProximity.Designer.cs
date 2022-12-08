@@ -32,6 +32,7 @@
             this.buttonBuka = new System.Windows.Forms.Button();
             this.listBoxProx = new System.Windows.Forms.ListBox();
             this.buttonSimpan = new System.Windows.Forms.Button();
+            this.buttonHitung = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProx)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,18 +69,29 @@
             // buttonSimpan
             // 
             this.buttonSimpan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSimpan.Location = new System.Drawing.Point(401, 545);
+            this.buttonSimpan.Location = new System.Drawing.Point(202, 545);
             this.buttonSimpan.Name = "buttonSimpan";
             this.buttonSimpan.Size = new System.Drawing.Size(184, 63);
             this.buttonSimpan.TabIndex = 6;
             this.buttonSimpan.Text = "&SIMPAN FILE";
             this.buttonSimpan.UseVisualStyleBackColor = true;
             // 
+            // buttonHitung
+            // 
+            this.buttonHitung.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonHitung.Location = new System.Drawing.Point(401, 545);
+            this.buttonHitung.Name = "buttonHitung";
+            this.buttonHitung.Size = new System.Drawing.Size(184, 63);
+            this.buttonHitung.TabIndex = 7;
+            this.buttonHitung.Text = "&HITUNG";
+            this.buttonHitung.UseVisualStyleBackColor = true;
+            // 
             // FormProximity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1101, 620);
+            this.Controls.Add(this.buttonHitung);
             this.Controls.Add(this.buttonSimpan);
             this.Controls.Add(this.listBoxProx);
             this.Controls.Add(this.buttonBuka);
@@ -98,5 +110,6 @@
         private System.Windows.Forms.Button buttonBuka;
         private System.Windows.Forms.ListBox listBoxProx;
         private System.Windows.Forms.Button buttonSimpan;
+        private System.Windows.Forms.Button buttonHitung;
     }
 }

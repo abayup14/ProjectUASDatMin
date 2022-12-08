@@ -24,11 +24,14 @@ namespace ProjectDatMinUAS
         private void buttonBuka_Click(object sender, EventArgs e)
         {
             DataTable data;
+
             formUtama.OpenFile(out data);
 
             dataGridViewProx.Visible = true;
 
             dataGridViewProx.DataSource = data;
+
+            formUtama.SetNumberRow(dataGridViewProx);
         }
 
         private void FormProximity_Load(object sender, EventArgs e)

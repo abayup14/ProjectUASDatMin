@@ -27,11 +27,24 @@ namespace ProjectDatMinUAS
         private void buttonBuka_Click(object sender, EventArgs e)
         {
             DataTable data;
+
             formUtama.OpenFile(out data);
 
             dataGridViewBest.Visible = true;
 
             dataGridViewBest.DataSource = data;
+
+            formUtama.SetNumberRow(dataGridViewBest);
+        }
+
+        public double GINICount()
+        {
+
+        }
+
+        public double EntropyCount()
+        {
+
         }
     }
 }
