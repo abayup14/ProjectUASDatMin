@@ -4,9 +4,3 @@ C:\Users\Andreas Bayu P\Documents\Visual Studio 2022\DatMinUAS_LIB\obj\Debug\Dat
 C:\Users\Andreas Bayu P\Documents\Visual Studio 2022\DatMinUAS_LIB\obj\Debug\DatMinUAS_LIB.csproj.CoreCompileInputs.cache
 C:\Users\Andreas Bayu P\Documents\Visual Studio 2022\DatMinUAS_LIB\obj\Debug\DatMinUAS_LIB.dll
 C:\Users\Andreas Bayu P\Documents\Visual Studio 2022\DatMinUAS_LIB\obj\Debug\DatMinUAS_LIB.pdb
-D:\GitHub\ProjectDatMinUAS\DatMinUAS_LIB\bin\Debug\DatMinUAS_LIB.dll
-D:\GitHub\ProjectDatMinUAS\DatMinUAS_LIB\bin\Debug\DatMinUAS_LIB.pdb
-D:\GitHub\ProjectDatMinUAS\DatMinUAS_LIB\obj\Debug\DatMinUAS_LIB.csproj.AssemblyReference.cache
-D:\GitHub\ProjectDatMinUAS\DatMinUAS_LIB\obj\Debug\DatMinUAS_LIB.csproj.CoreCompileInputs.cache
-D:\GitHub\ProjectDatMinUAS\DatMinUAS_LIB\obj\Debug\DatMinUAS_LIB.dll
-D:\GitHub\ProjectDatMinUAS\DatMinUAS_LIB\obj\Debug\DatMinUAS_LIB.pdb
