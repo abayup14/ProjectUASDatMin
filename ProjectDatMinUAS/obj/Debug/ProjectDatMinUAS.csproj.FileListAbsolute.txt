@@ -8,35 +8,3 @@ C:\Users\Andreas Bayu P\Documents\Visual Studio 2022\ProjectDatMinUAS\obj\Debug\
 C:\Users\Andreas Bayu P\Documents\Visual Studio 2022\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.csproj.CoreCompileInputs.cache
 C:\Users\Andreas Bayu P\Documents\Visual Studio 2022\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.exe
 C:\Users\Andreas Bayu P\Documents\Visual Studio 2022\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.pdb
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\ProjectDatMinUAS.exe.config
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\ProjectDatMinUAS.exe
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\ProjectDatMinUAS.pdb
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\IronSoftware.Drawing.Common.dll
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\IronXL.dll
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\SixLabors.ImageSharp.dll
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\System.Buffers.dll
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\System.Memory.dll
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\System.Numerics.Vectors.dll
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\System.Text.Encoding.CodePages.dll
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\IronSoftware.Drawing.Common.pdb
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\IronXL.pdb
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\IronXL.xml
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\IronXL.dll.config
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\SixLabors.ImageSharp.xml
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\System.Buffers.xml
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\System.Memory.xml
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\System.Numerics.Vectors.xml
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\bin\Debug\System.Text.Encoding.CodePages.xml
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.csproj.AssemblyReference.cache
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.csproj.SuggestedBindingRedirects.cache
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.FormBestSplit.resources
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.FormProximityMatrix.resources
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.FormUtama.resources
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.Properties.Resources.resources
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.csproj.GenerateResource.cache
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.csproj.CoreCompileInputs.cache
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.csproj.CopyComplete
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.exe
-D:\GitHub\ProjectDatMinUAS\ProjectDatMinUAS\obj\Debug\ProjectDatMinUAS.pdb
