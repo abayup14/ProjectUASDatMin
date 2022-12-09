@@ -22,6 +22,8 @@ namespace ProjectDatMinUAS
         private void FormBest_Load(object sender, EventArgs e)
         {
             formUtama = (FormUtama)this.MdiParent;
+
+            dataGridViewBest.AllowUserToAddRows = false;
         }
 
         private void buttonBuka_Click(object sender, EventArgs e)
@@ -33,8 +35,6 @@ namespace ProjectDatMinUAS
             dataGridViewBest.Visible = true;
 
             dataGridViewBest.DataSource = data;
-
-            formUtama.SetNumberRow(dataGridViewBest);
         }
 
         public double GINICount()

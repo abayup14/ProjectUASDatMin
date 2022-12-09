@@ -103,13 +103,5 @@ namespace ProjectDatMinUAS
                 }
             }
         }
-
-        public void SetNumberRow(DataGridView dataGrid)
-        {
-            foreach (DataGridViewRow row in dataGrid.Rows)
-            {
-                row.HeaderCell.Value = (row.Index + 1).ToString();
-            }
-        }
     }
 }
