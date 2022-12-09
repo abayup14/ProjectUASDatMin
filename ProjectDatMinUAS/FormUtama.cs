@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExcelDataReader;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using IronXL;
 
 namespace ProjectDatMinUAS
 {
@@ -66,44 +66,38 @@ namespace ProjectDatMinUAS
             IsMdiContainer = true;
         }
 
-        
-        private DataTable BacaDataExcel(string namaFile)
+        public void BacaDataExcel(DataGridView dataGridView)
         {
-            WorkBook workBook = WorkBook.Load(namaFile);
-            
-            WorkSheet workSheet = workBook.DefaultWorkSheet;
-            
-            return workSheet.ToDataTable(true);
-        }
+            OpenFileDialog openFileDialog = new OpenFileDialog();
 
-        public void BukaDataExcel(out DataTable dataExcel)
-        {
-            dataExcel = new DataTable();
+            openFileDialog.Filter = "Excel Files (*.xlsx; *.xls)|*.xlsx; *.xls";
 
-            OpenFileDialog fileDialog = new OpenFileDialog(); //open dialog to choose file
-
-            fileDialog.Filter = "Excel File (*.xlsx; *.xls)|*.xlsx; *.xls";
-
-            if (fileDialog.ShowDialog() == DialogResult.OK) //if there is a file chosen by the user
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                string fileExtension = Path.GetExtension(fileDialog.FileName); //get the file extension
+                try
+                {
+                    FileStream fileStream = File.Open(openFileDialog.FileName, FileMode.Open, FileAccess.Read);
 
-                if (fileExtension.CompareTo(".xls") == 0 || fileExtension.CompareTo(".xlsx") == 0)
-                {
-                    try
-                    {
-                        dataExcel = BacaDataExcel(fileDialog.FileName); //read excel file
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Terjadi kesalahan. Pesan kesalahan : " + ex.Message, "Kesalahan");
-                    }
+                    IExcelDataReader reader = ExcelReaderFactory.CreateReader(fileStream);
+
+                    DataSet result = reader.AsDataSet();
+
+                    DataTable dataTable = result.Tables[0];
+
+                    dataGridView.DataSource = dataTable;
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Hanya dapat memilih .xlsx atau .xls saja", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
+
+        public void SimpanDataExcel(DataGridView dataGridView)
+        {
+            
+        }
+
+        
     }
 }

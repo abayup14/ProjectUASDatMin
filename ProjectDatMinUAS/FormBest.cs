@@ -30,11 +30,11 @@ namespace ProjectDatMinUAS
         {
             DataTable dataExcel;
 
-            formUtama.BukaDataExcel(out dataExcel);
+            //formUtama.LoadExcel(out dataExcel);
 
             dataGridViewBest.Visible = true;
 
-            dataGridViewBest.DataSource = dataExcel;
+            //dataGridViewBest.DataSource = dataExcel;
         }
 
         public double GINICount()

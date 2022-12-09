@@ -36,18 +36,14 @@ namespace ProjectDatMinUAS
 
         private void buttonBuka_Click(object sender, EventArgs e)
         {
-            DataTable dataExcel = new DataTable();
-
-            formUtama.BukaDataExcel(out dataExcel);
+            formUtama.BacaDataExcel(dataGridViewProx);
 
             dataGridViewProx.Visible = true;
-
-            dataGridViewProx.DataSource = dataExcel;
         }
 
         private void buttonSimpan_Click(object sender, EventArgs e)
         {
-
+            //formUtama.SimpanKeExcel(dataGridViewHasil, "Coba.csv");
         }
 
         private void comboBoxDistance_SelectedIndexChanged(object sender, EventArgs e)
