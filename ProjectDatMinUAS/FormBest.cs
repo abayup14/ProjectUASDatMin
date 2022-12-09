@@ -28,13 +28,9 @@ namespace ProjectDatMinUAS
 
         private void buttonBuka_Click(object sender, EventArgs e)
         {
-            DataTable dataExcel;
-
-            //formUtama.LoadExcel(out dataExcel);
+            formUtama.BacaDataExcel(dataGridViewBest);
 
             dataGridViewBest.Visible = true;
-
-            //dataGridViewBest.DataSource = dataExcel;
         }
 
         public double GINICount()

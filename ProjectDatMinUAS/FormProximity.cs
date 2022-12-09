@@ -43,7 +43,7 @@ namespace ProjectDatMinUAS
 
         private void buttonSimpan_Click(object sender, EventArgs e)
         {
-            //formUtama.SimpanKeExcel(dataGridViewHasil, "Coba.csv");
+            formUtama.SimpanDataExcel(dataGridViewHasil);
         }
 
         private void comboBoxDistance_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace ProjectDatMinUAS
             {
                 dataGridViewHasil.Rows.Clear();
 
-                if (comboBoxDistance.SelectedIndex == 0 || comboBoxDistance.SelectedIndex == 2)
+                if (comboBoxDistance.SelectedIndex == 0)
                 {
                     int[,] proxMatrix = proximityMatrix.ManhattanDistance(dataGridViewProx);
 
@@ -61,6 +61,12 @@ namespace ProjectDatMinUAS
                 else if (comboBoxDistance.SelectedIndex == 1)
                 {
                     double[,] proxMatrix = proximityMatrix.EucledianDistance(dataGridViewProx);
+
+                    FormatDataGridHasil(proxMatrix);
+                }
+                else if (comboBoxDistance.SelectedIndex == 2)
+                {
+                    int[,] proxMatrix = proximityMatrix.SupremumDistance(dataGridViewProx);
 
                     FormatDataGridHasil(proxMatrix);
                 }
