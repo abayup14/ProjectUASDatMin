@@ -81,7 +81,13 @@ namespace ProjectDatMinUAS
 
                     IExcelDataReader reader = ExcelReaderFactory.CreateReader(fileStream);
 
-                    DataSet result = reader.AsDataSet();
+                    DataSet result = reader.AsDataSet(new ExcelDataSetConfiguration()
+                    {
+                        ConfigureDataTable = (_) => new ExcelDataTableConfiguration()
+                        {
+                            UseHeaderRow = true
+                        }
+                    });
 
                     DataTable dataTable = result.Tables[0];
 
@@ -112,7 +118,9 @@ namespace ProjectDatMinUAS
 
                     Excel._Worksheet excelWorksheet = null;
 
-                    excelApp.Visible = true;
+                    excelApp.Visible = false;
+
+                    excelApp.DisplayAlerts = false;
 
                     excelWorksheet = excelWorkbook.Sheets["Sheet1"];
 
@@ -126,7 +134,7 @@ namespace ProjectDatMinUAS
                             {
                                 if (dataGridView.Rows[i].Cells[j].Value != null)
                                 {
-                                    excelWorksheet.Cells[i + 1, j + 1] = dataGridView.Rows[i].Cells[j].Value.ToString();
+                                    excelWorksheet.Cells[i + 1, j + 1] = dataGridView.Rows[i].Cells[j].Value;
                                 }
                                 else
                                 {
@@ -138,6 +146,8 @@ namespace ProjectDatMinUAS
                         excelWorksheet.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
 
                         excelWorkbook.Close(true, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+
+                        excelApp.Quit();
 
                         ReleaseObject(excelWorksheet);
 
