@@ -129,7 +129,7 @@
             this.Controls.Add(this.buttonBuka);
             this.Controls.Add(this.dataGridViewProx);
             this.Name = "FormProximity";
-            this.Text = "Proximity";
+            this.Text = "Proximity Matrix";
             this.Load += new System.EventHandler(this.FormProximity_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewProx)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewHasil)).EndInit();

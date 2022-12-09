@@ -82,6 +82,9 @@
             // 
             this.comboBoxDistance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxDistance.FormattingEnabled = true;
+            this.comboBoxDistance.Items.AddRange(new object[] {
+            "Best Split dengan GINI",
+            "Best Split dengan Entropy"});
             this.comboBoxDistance.Location = new System.Drawing.Point(677, 9);
             this.comboBoxDistance.Name = "comboBoxDistance";
             this.comboBoxDistance.Size = new System.Drawing.Size(390, 30);
@@ -120,7 +123,7 @@
             this.Controls.Add(this.buttonBuka);
             this.Controls.Add(this.dataGridViewBest);
             this.Name = "FormBest";
-            this.Text = "Best";
+            this.Text = "Best Split";
             this.Load += new System.EventHandler(this.FormBest_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBest)).EndInit();
             this.ResumeLayout(false);

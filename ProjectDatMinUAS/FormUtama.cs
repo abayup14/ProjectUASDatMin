@@ -67,20 +67,22 @@ namespace ProjectDatMinUAS
         }
 
         
-        private DataTable ReadExcel(string fileName)
+        private DataTable BacaDataExcel(string namaFile)
         {
-            WorkBook workbook = WorkBook.Load(fileName);
+            WorkBook workBook = WorkBook.Load(namaFile);
             
-            WorkSheet sheet = workbook.DefaultWorkSheet;
+            WorkSheet workSheet = workBook.DefaultWorkSheet;
             
-            return sheet.ToDataTable(true);
+            return workSheet.ToDataTable(true);
         }
 
-        public void OpenFile(out DataTable data)
+        public void BukaDataExcel(out DataTable dataExcel)
         {
-            data = new DataTable();
+            dataExcel = new DataTable();
 
             OpenFileDialog fileDialog = new OpenFileDialog(); //open dialog to choose file
+
+            fileDialog.Filter = "Excel File (*.xlsx; *.xls)|*.xlsx; *.xls";
 
             if (fileDialog.ShowDialog() == DialogResult.OK) //if there is a file chosen by the user
             {
@@ -90,16 +92,16 @@ namespace ProjectDatMinUAS
                 {
                     try
                     {
-                        data = ReadExcel(fileDialog.FileName); //read excel file
+                        dataExcel = BacaDataExcel(fileDialog.FileName); //read excel file
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show(ex.Message.ToString());
+                        MessageBox.Show("Terjadi kesalahan. Pesan kesalahan : " + ex.Message, "Kesalahan");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please choose .xls or .xlsx file only.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error
+                    MessageBox.Show("Hanya dapat memilih .xlsx atau .xls saja", "Peringatan", MessageBoxButtons.OK, MessageBoxIcon.Error); //custom messageBox to show error
                 }
             }
         }

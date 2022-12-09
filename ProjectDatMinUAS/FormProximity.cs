@@ -16,6 +16,8 @@ namespace ProjectDatMinUAS
     {
         FormUtama formUtama;
 
+        ProximityMatrix proximityMatrix;
+
         public FormProximity()
         {
             InitializeComponent();
@@ -25,6 +27,8 @@ namespace ProjectDatMinUAS
         {
             formUtama = (FormUtama)this.MdiParent;
 
+            proximityMatrix = new ProximityMatrix();
+
             dataGridViewProx.AllowUserToAddRows = false;
 
             dataGridViewHasil.AllowUserToAddRows = false;
@@ -32,158 +36,13 @@ namespace ProjectDatMinUAS
 
         private void buttonBuka_Click(object sender, EventArgs e)
         {
-            DataTable data;
+            DataTable dataExcel = new DataTable();
 
-            formUtama.OpenFile(out data);
+            formUtama.BukaDataExcel(out dataExcel);
 
             dataGridViewProx.Visible = true;
 
-            dataGridViewProx.DataSource = data;
-        }
-
-        private void ManhattanDistance()
-        {
-            int[,] proxMatrix = new int[dataGridViewProx.RowCount, dataGridViewProx.RowCount];
-
-            for (int i = 0; i < dataGridViewProx.RowCount; i++)
-            {
-                for (int j = 0; j < dataGridViewProx.RowCount; j++)
-                {
-                    int distance = 0;
-
-                    for (int k = 0; k < dataGridViewProx.ColumnCount; k++)
-                    {
-                        int nilai1 = int.Parse(dataGridViewProx.Rows[i].Cells[k].Value.ToString());
-
-                        int nilai2 = int.Parse(dataGridViewProx.Rows[j].Cells[k].Value.ToString());
-
-                        int sum = Math.Abs(nilai1 - nilai2);
-
-                        distance += sum;
-                    }
-
-                    proxMatrix[i, j] = distance;
-                }
-            }
-
-            int newRowCount = proxMatrix.GetLength(0);
-
-            int newColCount = proxMatrix.GetLength(1);
-
-            dataGridViewHasil.ColumnCount = newColCount;
-
-            for (int row = 0; row < newRowCount; row++)
-            {
-                DataGridViewRow newRow = new DataGridViewRow();
-
-                newRow.CreateCells(dataGridViewHasil);
-
-                for (int col = 0; col < newColCount; col++)
-                {
-                    newRow.Cells[col].Value = proxMatrix[row, col];
-                }
-
-                dataGridViewHasil.Rows.Add(newRow);
-            }
-        }
-
-        private void EucledianDistance()
-        {
-            double[,] proxMatrix = new double[dataGridViewProx.RowCount, dataGridViewProx.RowCount];
-
-            for (int i = 0; i < dataGridViewProx.RowCount; i++)
-            {
-                for (int j = 0; j < dataGridViewProx.RowCount; j++)
-                {
-                    double total = 0;
-
-                    double distance;
-
-                    for (int k = 0; k < dataGridViewProx.ColumnCount; k++)
-                    {
-                        double nilai1 = double.Parse(dataGridViewProx.Rows[i].Cells[k].Value.ToString());
-
-                        double nilai2 = double.Parse(dataGridViewProx.Rows[j].Cells[k].Value.ToString());
-
-                        double sum = Math.Pow(Math.Abs(nilai1 - nilai2), 2);
-
-                        total += sum;
-                    }
-
-                    distance = Math.Round(Math.Sqrt(total), 4);
-
-                    proxMatrix[i, j] = distance;
-                }
-            }
-
-            int newRowCount = proxMatrix.GetLength(0);
-
-            int newColCount = proxMatrix.GetLength(1);
-
-            dataGridViewHasil.ColumnCount = newColCount;
-
-            for (int row = 0; row < newRowCount; row++)
-            {
-                DataGridViewRow newRow = new DataGridViewRow();
-
-                newRow.CreateCells(dataGridViewHasil);
-
-                for (int col = 0; col < newColCount; col++)
-                {
-                    newRow.Cells[col].Value = proxMatrix[row, col];
-                }
-
-                dataGridViewHasil.Rows.Add(newRow);
-            }
-        }
-
-        private void SupremumDistance()
-        {
-            int[,] proxMatrix = new int[dataGridViewProx.RowCount, dataGridViewProx.RowCount];
-
-            for (int i = 0; i < dataGridViewProx.RowCount; i++)
-            {
-                for (int j = 0; j < dataGridViewProx.RowCount; j++)
-                {
-                    int distance = -1;
-
-                    for (int k = 0; k < dataGridViewProx.ColumnCount; k++)
-                    {
-                        int nilai1 = int.Parse(dataGridViewProx.Rows[i].Cells[k].Value.ToString());
-
-                        int nilai2 = int.Parse(dataGridViewProx.Rows[j].Cells[k].Value.ToString());
-
-                        int sum = Math.Abs(nilai1 - nilai2);
-
-                        if (sum > distance)
-                        {
-                            distance = sum;
-                        }
-                    }
-
-                    proxMatrix[i, j] = distance;
-                }
-            }
-
-            int newRowCount = proxMatrix.GetLength(0);
-
-            int newColCount = proxMatrix.GetLength(1);
-
-            dataGridViewHasil.ColumnCount = newColCount;
-
-            for (int row = 0; row < newRowCount; row++)
-            {
-                DataGridViewRow newRow = new DataGridViewRow();
-
-                newRow.CreateCells(dataGridViewHasil);
-
-                for (int col = 0; col < newColCount; col++)
-                {
-                    newRow.Cells[col].Value = proxMatrix[row, col];
-                }
-
-                dataGridViewHasil.Rows.Add(newRow);
-            }
+            dataGridViewProx.DataSource = dataExcel;
         }
 
         private void buttonSimpan_Click(object sender, EventArgs e)
@@ -197,18 +56,64 @@ namespace ProjectDatMinUAS
             {
                 dataGridViewHasil.Rows.Clear();
 
-                if (comboBoxDistance.SelectedIndex == 0)
+                if (comboBoxDistance.SelectedIndex == 0 || comboBoxDistance.SelectedIndex == 2)
                 {
-                    ManhattanDistance();
+                    int[,] proxMatrix = proximityMatrix.ManhattanDistance(dataGridViewProx);
+
+                    FormatDataGridHasil(proxMatrix);
                 }
                 else if (comboBoxDistance.SelectedIndex == 1)
                 {
-                    EucledianDistance();
+                    double[,] proxMatrix = proximityMatrix.EucledianDistance(dataGridViewProx);
+
+                    FormatDataGridHasil(proxMatrix);
                 }
-                else if (comboBoxDistance.SelectedIndex == 2)
+            }
+        }
+
+        private void FormatDataGridHasil(int[,] proxMatrix)
+        {
+            int newRowCount = proxMatrix.GetLength(0);
+
+            int newColCount = proxMatrix.GetLength(1);
+
+            dataGridViewHasil.ColumnCount = newColCount;
+
+            for (int row = 0; row < newRowCount; row++)
+            {
+                DataGridViewRow newRow = new DataGridViewRow();
+
+                newRow.CreateCells(dataGridViewHasil);
+
+                for (int col = 0; col < newColCount; col++)
                 {
-                    SupremumDistance();
+                    newRow.Cells[col].Value = proxMatrix[row, col];
                 }
+
+                dataGridViewHasil.Rows.Add(newRow);
+            }
+        }
+
+        private void FormatDataGridHasil(double[,] proxMatrix)
+        {
+            int newRowCount = proxMatrix.GetLength(0);
+
+            int newColCount = proxMatrix.GetLength(1);
+
+            dataGridViewHasil.ColumnCount = newColCount;
+
+            for (int row = 0; row < newRowCount; row++)
+            {
+                DataGridViewRow newRow = new DataGridViewRow();
+
+                newRow.CreateCells(dataGridViewHasil);
+
+                for (int col = 0; col < newColCount; col++)
+                {
+                    newRow.Cells[col].Value = proxMatrix[row, col];
+                }
+
+                dataGridViewHasil.Rows.Add(newRow);
             }
         }
     }
