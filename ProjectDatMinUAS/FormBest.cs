@@ -44,7 +44,11 @@ namespace ProjectDatMinUAS
 
         public double EntropyCount()
         {
+<<<<<<<<< Temporary merge branch 1
+
+=========
             return 0;
+>>>>>>>>> Temporary merge branch 2
         }
     }
 }
