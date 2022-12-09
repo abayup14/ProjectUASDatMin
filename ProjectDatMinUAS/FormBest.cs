@@ -39,12 +39,12 @@ namespace ProjectDatMinUAS
 
         public double GINICount()
         {
-            return 0;
+
         }
 
         public double EntropyCount()
         {
-            return 0;
+
         }
     }
 }

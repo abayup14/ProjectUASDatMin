@@ -108,7 +108,7 @@ namespace ProjectDatMinUAS
         {
             foreach (DataGridViewRow row in dataGrid.Rows)
             {
-                row.HeaderCell.Value = (row.Index).ToString();
+                row.HeaderCell.Value = (row.Index + 1).ToString();
             }
         }
     }
