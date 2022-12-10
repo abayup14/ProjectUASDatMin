@@ -143,9 +143,9 @@ namespace ProjectDatMinUAS
                             }
                         }
 
-                        excelWorksheet.SaveAs(fileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                        excelWorksheet.SaveAs(fileName);
 
-                        excelWorkbook.Close(true, System.Reflection.Missing.Value, System.Reflection.Missing.Value);
+                        excelWorkbook.Close(true);
 
                         excelApp.Quit();
 
