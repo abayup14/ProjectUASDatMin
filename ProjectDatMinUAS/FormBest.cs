@@ -96,6 +96,23 @@ namespace ProjectDatMinUAS
                 }
             }
 
+            // hitung gini parent, inisialisasi variable untuk menampung hasil gini parent
+            double countGINIParent = 0;
+
+            // loop untuk menghitung gini setiap tipe klasifikasi
+            for (int i = 0; i < countEveryClassType.Count; i++)
+            {
+                // hitung dengan cara jumlah tiap tipe klasifikasi dibagi jumlah klasifikasi
+                double GINIEveryClassType = countEveryClassType[i] / (double)classification.Count;
+
+                // kuadratkan hasil gini setiap klasifikasi kemudian tambahkan ke hasil gini parent
+                countGINIParent += Math.Pow(GINIEveryClassType, 2); 
+            }
+
+            countGINIParent = 1 - countGINIParent; // rumus hitung gini parent = 1 - total semua gini setiap tipe kelas
+
+            listBoxBest.Items.Add("Hasil GINI parent : " + countGINIParent);
+
 
         }
 
