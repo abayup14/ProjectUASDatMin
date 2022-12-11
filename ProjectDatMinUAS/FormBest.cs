@@ -116,9 +116,9 @@ namespace ProjectDatMinUAS
 
         }
 
-        public double EntropyCount()
+        public void EntropyCount()
         {
-            return 0;
+
         }
 
         private void comboBoxDistance_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,6 +128,10 @@ namespace ProjectDatMinUAS
                 if (comboBoxDistance.SelectedIndex == 0)
                 {
                     GINICount();
+                }
+                else if (comboBoxDistance.SelectedIndex == 1)
+                {
+                    EntropyCount();
                 }
             }
         }
