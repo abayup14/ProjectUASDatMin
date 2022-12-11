@@ -103,7 +103,7 @@ namespace ProjectDatMinUAS
             for (int i = 0; i < countEveryClassType.Count; i++)
             {
                 // hitung dengan cara jumlah tiap tipe klasifikasi dibagi jumlah klasifikasi
-                double GINIEveryClassType = countEveryClassType[i] / (double)classification.Count;
+                double GINIEveryClassType = countEveryClassType[i] / (double)classification.Count; // jangan lupa convert ke double
 
                 // kuadratkan hasil gini setiap klasifikasi kemudian tambahkan ke hasil gini parent
                 countGINIParent += Math.Pow(GINIEveryClassType, 2); 
