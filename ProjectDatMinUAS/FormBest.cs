@@ -114,6 +114,24 @@ namespace ProjectDatMinUAS
             listBoxBest.Items.Add("Hasil GINI parent : " + countGINIParent);
 
 
+            int countFeature = featureList[0, 0].Count(); // hitung feature yang ada di setiap baris
+
+            for (int i = 0; i < countFeature; i++) // loop untuk setiap feature yang ada di array2d
+            {
+                List<string> featureType = new List<string>(); // buat list untuk tampung tipe-tipe untuk setiap feature
+
+                for (int j = 0; j < rowCount; j++) // loop untuk setiap baris di array2d
+                {
+                    string feature = featureList[j, i]; // tampung isi dari array di baris j kolom i
+
+                    if (!featureType.Contains(feature)) // cek apakah list tipe feature sudah berisi feature yang ada di kolom tersebut 
+                    {
+                        featureType.Add(feature); // jika tidak ada, masukkan feature tersebut ke list tersebut
+                    }
+                }
+
+                
+            }
         }
 
         public void EntropyCount()
