@@ -31,7 +31,6 @@
             this.buttonBuka = new System.Windows.Forms.Button();
             this.dataGridViewBest = new System.Windows.Forms.DataGridView();
             this.listBoxBest = new System.Windows.Forms.ListBox();
-            this.buttonSimpan = new System.Windows.Forms.Button();
             this.comboBoxDistance = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,16 +66,6 @@
             this.listBoxBest.Name = "listBoxBest";
             this.listBoxBest.Size = new System.Drawing.Size(573, 516);
             this.listBoxBest.TabIndex = 4;
-            // 
-            // buttonSimpan
-            // 
-            this.buttonSimpan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSimpan.Location = new System.Drawing.Point(982, 577);
-            this.buttonSimpan.Name = "buttonSimpan";
-            this.buttonSimpan.Size = new System.Drawing.Size(184, 63);
-            this.buttonSimpan.TabIndex = 7;
-            this.buttonSimpan.Text = "&SIMPAN FILE";
-            this.buttonSimpan.UseVisualStyleBackColor = true;
             // 
             // comboBoxDistance
             // 
@@ -119,7 +108,6 @@
             this.Controls.Add(this.comboBoxDistance);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.buttonSimpan);
             this.Controls.Add(this.listBoxBest);
             this.Controls.Add(this.buttonBuka);
             this.Controls.Add(this.dataGridViewBest);
@@ -137,7 +125,6 @@
         private System.Windows.Forms.Button buttonBuka;
         private System.Windows.Forms.DataGridView dataGridViewBest;
         private System.Windows.Forms.ListBox listBoxBest;
-        private System.Windows.Forms.Button buttonSimpan;
         private System.Windows.Forms.ComboBox comboBoxDistance;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
