@@ -37,7 +37,7 @@ namespace ProjectDatMinUAS
             return proxMatrix;
         }
 
-        public double[,] EucledianDistance(DataGridView dataGridView)
+        public double[,] EuclideanDistance(DataGridView dataGridView)
         {
             double[,] proxMatrix = new double[dataGridView.RowCount, dataGridView.RowCount];
 

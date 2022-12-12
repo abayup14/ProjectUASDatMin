@@ -60,7 +60,7 @@ namespace ProjectDatMinUAS
                 }
                 else if (comboBoxDistance.SelectedIndex == 1)
                 {
-                    double[,] proxMatrix = proximityMatrix.EucledianDistance(dataGridViewProx);
+                    double[,] proxMatrix = proximityMatrix.EuclideanDistance(dataGridViewProx);
 
                     FormatDataGridHasil(proxMatrix);
                 }
