@@ -28,8 +28,6 @@ namespace ProjectDatMinUAS
             formUtama = (FormUtama)this.MdiParent;
 
             dataGridViewBest.AllowUserToAddRows = false;
-
-
         }
 
         private void buttonBuka_Click(object sender, EventArgs e)
@@ -43,19 +41,16 @@ namespace ProjectDatMinUAS
         {
             // hitung jumlah baris dan kolom datagrid
             int rowCount = dataGridViewBest.RowCount;
-
             int colCount = dataGridViewBest.ColumnCount;
 
-            //buat array2d untuk menyimpan attribut yg bukan jenis klasifikasinya
-            //string[,] featureList = new string[rowCount, colCount];
-
+            // inisialisasi list dalam list untuk menyimpan feature setiap kolom
             List<List<object>> featureList = new List<List<object>>();
 
             //buat list untuk simpan klasifikasi dataset
-            List<string> classification = new List<string>();
+            List<object> classification = new List<object>();
 
             //buat list untuk simpan jenis dari klasifikasi dataset
-            List<string> classType = new List<string>();
+            List<object> classType = new List<object>();
 
             // loop untuk menyimpan datagrid feature ke array , kliasifikasi dan tipenya ke list
             for (int i = 0; i < rowCount; i++) // loop untuk setiap baris data
@@ -65,7 +60,7 @@ namespace ProjectDatMinUAS
                 for (int j = 0; j < colCount; j++) // loop untuk setiap kolom feature
                 {
                     // simpan nilai di baris i kolom j ke variable
-                    string nilai = dataGridViewBest.Rows[i].Cells[j].Value.ToString(); 
+                    object nilai = dataGridViewBest.Rows[i].Cells[j].Value;
 
                     if (j != colCount - 1) // cek apakah kolom bukan kolom yang terakhir
                     {
@@ -83,7 +78,7 @@ namespace ProjectDatMinUAS
                     }
                 }
 
-                featureList.Add(featureEveryRow);
+                featureList.Add(featureEveryRow); // tambahkan hasil 1 baris feature tersebut ke list feature
             }
 
             // buat list untuk simpan hasil perhitungan setiap klasifikasi
@@ -106,8 +101,6 @@ namespace ProjectDatMinUAS
 
                         break; // apabila sudah ada 1 yg sesuai, keluar dari loop j untuk langsung memulai loop i kembali
                     }
-
-                    
                 }
             }
 
@@ -130,16 +123,16 @@ namespace ProjectDatMinUAS
             listBoxBest.Items.Add("");
 
 
-            int countFeature = featureList[0].Count; // hitung feature yang ada di baris pertama sebagai contoh
+            //int countFeature = featureList[0].Count; // hitung feature yang ada di baris pertama sebagai contoh
 
-            List<string> featureType = new List<string>(); // buat list untuk tampung tipe-tipe untuk setiap feature
+            List<object> featureType = new List<object>(); // buat list untuk tampung tipe-tipe untuk setiap feature
 
-            for (int i = 0; i < countFeature; i++) // loop untuk setiap feature yang ada di list
+            for (int i = 0; i < featureList[0].Count; i++) // loop untuk setiap feature yang ada di list
             {
                 for (int j = 0; j < featureList.Count; j++) // loop untuk setiap baris di list
                 {
+                    //string feature = featureList[j, i]; // tampung isi dari list di baris j kolom i
                     object feature = featureList[j][i];
-                    //string feature = featureList[]; // tampung isi dari list di baris j kolom i
 
                     if (!featureType.Contains(feature)) // cek apakah list tipe feature sudah berisi feature yang ada di kolom tersebut 
                     {
@@ -147,108 +140,112 @@ namespace ProjectDatMinUAS
                     }
                 }
 
-                //// inisialisasi array2d untuk simpan data tipe feature setiap tipe klasifikasi
-                //int[,] featureEveryClassType = new int[classType.Count, featureType.Count];
+                // inisialisasi list dalam list untuk simpan jumlah data tipe feature setiap tipe klasifikasi
+                List<List<int>> countFeatureEveryClassType = new List<List<int>>();
 
-                //for (int j = 0; j < classType.Count; j++) // loop setiap tipe class di dataset
-                //{
-                //    for (int k = 0; k < featureType.Count; k++) // loop setiap tipe feature untuk setiap tipe klasifikasi
-                //    {
-                //        featureEveryClassType[j, k] = 0; // inisialisasi setiap baris dan kolom di array = 0
-                //    }
-                //}
+                for (int j = 0; j < classType.Count; j++) // loop setiap tipe class di dataset
+                {
+                    List<int> typeFeature = new List<int>(); // inisialisasi list untuk tampung jumlah data tiap feature
 
-                //for (int j = 0; j < colCount - 1; j++) // loop setiap feature yang ada di setiap baris i kolom j
-                //{
-                //    for (int k = 0; k < rowCount; k++)
-                //    {
-                //        for (int l = 0; l < featureType.Count; l++) // loop setiap tipe feature yang ada di setiap kolom
-                //        {
-                //            // cek apakah feature yang ada di baris j kolom k sama dengan tipe feature di index l
-                //            if (featureList[k, j] == featureType[l])
-                //            {
-                //                for (int m = 0; m < classType.Count; m++) // loop untuk setiap tipe klasifikasi di dataset
-                //                {
-                //                    // cek apakah klasifikasi di index k sama dengan tipe klasifikasi di index m
-                //                    if (classification[k] == classType[m])
-                //                    {
-                //                        // apabila sama, tambahkan 1 ke dalam tipe feature untuk setiap klasifikasi yg sesuai
-                //                        featureEveryClassType[m, l]++;
+                    for (int k = 0; k < featureType.Count; k++) // loop setiap tipe feature untuk setiap tipe klasifikasi
+                    {
+                        typeFeature.Add(0); // inisialisasi setiap baris dan kolom di array = 0
+                    }
 
-                //                        break; // apabila sudah ada 1 yg sesuai loop kembali ke loop diluar ini
-                //                    }
-                //                }
+                    countFeatureEveryClassType.Add(typeFeature);
+                }
 
-                //                // apabila feature di dataset sama dengan yang ada di tipe feature, maka loop berhenti dan keluar
-                //                break;
-                //            }
-                //        }
-                //    }
-                //}
+                for (int j = 0; j < colCount - 1; j++) // loop setiap feature yang ada di setiap baris j kolom k
+                {
+                    for (int k = 0; k < rowCount; k++)
+                    {
+                        for (int l = 0; l < featureType.Count; l++) // loop setiap tipe feature yang ada di setiap kolom
+                        {
+                            // cek apakah feature yang ada di baris j kolom k sama dengan tipe feature di index l
+                            if (featureList[k][j] == featureType[l])
+                            {
+                                for (int m = 0; m < classType.Count; m++) // loop untuk setiap tipe klasifikasi di dataset
+                                {
+                                    // cek apakah klasifikasi di index k sama dengan tipe klasifikasi di index m
+                                    if (classification[k] == classType[m])
+                                    {
+                                        // apabila sama, tambahkan 1 ke dalam tipe feature untuk setiap klasifikasi yg sesuai
+                                        countFeatureEveryClassType[m][l]++;
 
-                //List<int> sumFeatureEveryClassType = new List<int>(); //inisialisasi untuk hitung jumlah tipe feature di setiap kolom
+                                        break; // apabila sudah ada 1 yg sesuai loop kembali ke loop diluar ini
+                                    }
+                                }
 
-                //for (int j = 0; j < featureEveryClassType.GetLength(1); j++) // loop untuk setiap kolom di setiap tipe feature
-                //{
-                //    int sum = 0; // inisialisasi jumlah = 0
+                                // apabila feature di dataset sama dengan yang ada di tipe feature, maka loop berhenti dan keluar
+                                break;
+                            }
+                        }
+                    }
+                }
 
-                //    for (int k = 0; k < featureEveryClassType.GetLength(0); k++) // loop untuk setiap baris di setiap tipe feature
-                //    {
-                //        sum += featureEveryClassType[k, j]; // jumlahkan nilai array baris j kolom i ke dalam sum
-                //    }
+                List<int> sumFeatureEveryClassType = new List<int>(); //inisialisasi untuk hitung jumlah tipe feature di setiap kolom
 
-                //    sumFeatureEveryClassType.Add(sum); // setelah selesai, maka tambahkan hasil tersebut ke dalam list
-                //}
+                for (int j = 0; j < countFeatureEveryClassType[0].Count; j++) // loop untuk setiap kolom di setiap tipe feature
+                {
+                    int sum = 0; // inisialisasi jumlah = 0
 
-                //List<double> giniEveryFeature = new List<double>(); // inisialisasi list untuk menyimpan gini setiap feature
+                    for (int k = 0; k < countFeatureEveryClassType.Count; k++) // loop untuk setiap baris di setiap tipe feature
+                    {
+                        sum += countFeatureEveryClassType[k][j]; // jumlahkan nilai array baris j kolom i ke dalam sum
+                    }
 
-                //// loop untuk setiap kolom fitur di setiap klasifikasi
-                //for (int j = 0; j < featureEveryClassType.GetLength(1); j++)
-                //{
-                //    double giniFeature = 0; // inisialisasi nilai gini feature = 0
+                    sumFeatureEveryClassType.Add(sum); // setelah selesai, maka tambahkan hasil tersebut ke dalam list
+                }
 
-                //    // loop untuk setiap baris fitur di setiap klasifikasi
-                //    for (int k = 0; k < featureEveryClassType.GetLength(0); k++)
-                //    {
-                //        // hitung nilai gini setiap feature dengan cara total setiap fitur di setiap klaifikasi dibagi total fitur di kolom kemudian dikuadratkan
-                //        giniFeature += Math.Pow((double)featureEveryClassType[k, j] / sumFeatureEveryClassType[j], 2);
-                //    }
+                List<double> giniEveryFeature = new List<double>(); // inisialisasi list untuk menyimpan gini setiap feature
 
-                //    // hitung gini dengan cara 1 - nilai gini setiap feature
-                //    giniFeature = Math.Round((1 - giniFeature), 4);
+                // loop untuk setiap kolom fitur di setiap klasifikasi
+                for (int j = 0; j < countFeatureEveryClassType[0].Count; j++)
+                {
+                    double giniFeature = 0; // inisialisasi nilai gini feature = 0
 
-                //    giniEveryFeature.Add(giniFeature); // masukkan nilai gini feature ke dalam list
-                //}
+                    // loop untuk setiap baris fitur di setiap klasifikasi
+                    for (int k = 0; k < countFeatureEveryClassType.Count; k++)
+                    {
+                        // hitung nilai gini setiap feature dengan cara total setiap fitur di setiap klaifikasi dibagi total fitur di kolom kemudian dikuadratkan
+                        giniFeature += Math.Pow((double)countFeatureEveryClassType[k][j] / sumFeatureEveryClassType[j], 2);
+                    }
 
-                //int sumEveryTypeFeature = 0; // inisialisasi hitung jumlah semua fitur setiap kolom
+                    // hitung gini dengan cara 1 - nilai gini setiap feature
+                    giniFeature = Math.Round((1 - giniFeature), 4);
 
-                ////loop untuk menghitung jumlah semua fitur setiap kolom dari jumlah tipe fitur di setiap kolom
-                //for (int j = 0; j < sumFeatureEveryClassType.Count; j++)
-                //{
-                //    // jumlah tipe fitur di setiap kolom ditambahkan dengan jumlah semua fitur setiap kolom
-                //    sumEveryTypeFeature += sumFeatureEveryClassType[j];
-                //}
+                    giniEveryFeature.Add(giniFeature); // masukkan nilai gini feature ke dalam list
+                }
 
-                //double weightedGINI = 0; // inisialisasi untuk menghitung weighted gini setiap kolom
+                int sumEveryTypeFeature = 0; // inisialisasi hitung jumlah semua fitur setiap kolom
 
-                //// loop untuk menghitung weighted gini setiap tipe fitur di setiap kolom
-                //for (int j = 0; j < sumFeatureEveryClassType.Count; j++)
-                //{
-                //    // hitung weighted gini dengan cara total tipe feature dibagi dengan total fitur di setiap kolom dikali dengan gini setiap tipe fitur
-                //    double weightedGainEveryTypeFeature = (double)sumFeatureEveryClassType[j] / sumEveryTypeFeature * giniEveryFeature[j];
+                //loop untuk menghitung jumlah semua fitur setiap kolom dari jumlah tipe fitur di setiap kolom
+                for (int j = 0; j < sumFeatureEveryClassType.Count; j++)
+                {
+                    // jumlah tipe fitur di setiap kolom ditambahkan dengan jumlah semua fitur setiap kolom
+                    sumEveryTypeFeature += sumFeatureEveryClassType[j];
+                }
 
-                //    // hasil perhitungan di atas ditambahkan ke weighted gini
-                //    weightedGINI += weightedGainEveryTypeFeature;
-                //}
+                double weightedGINI = 0; // inisialisasi untuk menghitung weighted gini setiap kolom
 
-                // hitung gain feature setiap kolom dengan cara gini parent dikurangi weighted gini
-                //double gainFeature = Math.Round(GINIParent - weightedGINI, 4);
+                // loop untuk menghitung weighted gini setiap tipe fitur di setiap kolom
+                for (int j = 0; j < sumFeatureEveryClassType.Count; j++)
+                {
+                    // hitung weighted gini dengan cara total tipe feature dibagi dengan total fitur di setiap kolom dikali dengan gini setiap tipe fitur
+                    double weightedGainEveryTypeFeature = (double)sumFeatureEveryClassType[j] / sumEveryTypeFeature * giniEveryFeature[j];
 
-                //listBoxBest.Items.Add("Hasil Gain Feat Feature " + dataGridViewBest.Columns[i].HeaderText + " adalah " + gainFeature);
+                    // hasil perhitungan di atas ditambahkan ke weighted gini
+                    weightedGINI += weightedGainEveryTypeFeature;
+                }
 
-                //gainFeatEveryFeature.Add(gainFeature); // tambahkan hasil gain feature setiap kolom ke list
+                //hitung gain feature setiap kolom dengan cara gini parent dikurangi weighted gini
+                double gainFeature = Math.Round(GINIParent - weightedGINI, 4);
 
-                //listFeatureName.Add(dataGridViewBest.Columns[i].HeaderText); // tambahkan nama feature ke dalam list
+                listBoxBest.Items.Add("Hasil Gain Feat Feature " + dataGridViewBest.Columns[i].HeaderText + " adalah " + gainFeature);
+
+                gainFeatEveryFeature.Add(gainFeature); // tambahkan hasil gain feature setiap kolom ke list
+
+                listFeatureName.Add(dataGridViewBest.Columns[i].HeaderText); // tambahkan nama feature ke dalam list
 
                 featureType.Clear(); // kosongkan list untuk menampung tipe feature di kolom berikutnya
             }
