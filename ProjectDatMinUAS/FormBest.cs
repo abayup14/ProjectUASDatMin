@@ -114,7 +114,7 @@ namespace ProjectDatMinUAS
             listBoxBest.Items.Add("Hasil GINI parent : " + countGINIParent);
 
 
-            int countFeature = featureList[0, 0].Count(); // hitung feature yang ada di setiap baris
+            int countFeature = featureList[0, 0].Count(); // hitung feature yang ada di baris pertama sebagai contoh
 
             for (int i = 0; i < countFeature; i++) // loop untuk setiap feature yang ada di array2d
             {
