@@ -14,6 +14,10 @@ namespace ProjectDatMinUAS
     {
         FormUtama formUtama;
 
+        List<double> gainFeatEveryFeature = new List<double>();
+
+        List<string> listFeatureName = new List<string>();
+
         public FormBest()
         {
             InitializeComponent();
@@ -82,7 +86,7 @@ namespace ProjectDatMinUAS
                 countEveryClassType.Add(0); // inisialisi 0 untuk setiap tipe klasifikasi
             }
 
-            // loop untuk membandingkan antara klasifikasi denga tipe klasifikasinya
+            // loop untuk membandingkan antara klasifikasi dengan tipe klasifikasinya
             for (int i = 0; i < classification.Count; i++) // loop setiap klasifikasi
             {
                 for (int j = 0; j < classType.Count; j++) // loop setiap tipe klasifikasi
@@ -97,7 +101,7 @@ namespace ProjectDatMinUAS
             }
 
             // hitung gini parent, inisialisasi variable untuk menampung hasil gini parent
-            double countGINIParent = 0;
+            double GINIParent = 0;
 
             // loop untuk menghitung gini setiap tipe klasifikasi
             for (int i = 0; i < countEveryClassType.Count; i++)
@@ -106,20 +110,20 @@ namespace ProjectDatMinUAS
                 double GINIEveryClassType = countEveryClassType[i] / (double)classification.Count; // jangan lupa convert ke double
 
                 // kuadratkan hasil gini setiap klasifikasi kemudian tambahkan ke hasil gini parent
-                countGINIParent += Math.Pow(GINIEveryClassType, 2); 
+                GINIParent += Math.Pow(GINIEveryClassType, 2); 
             }
 
-            countGINIParent = 1 - countGINIParent; // rumus hitung gini parent = 1 - total semua gini setiap tipe kelas
+            GINIParent = 1 - GINIParent; // rumus hitung gini parent = 1 - total semua gini setiap tipe kelas
 
-            listBoxBest.Items.Add("Hasil GINI parent : " + countGINIParent);
+            listBoxBest.Items.Add("Hasil GINI parent : " + GINIParent);
 
 
-            int countFeature = featureList[0, 0].Count(); // hitung feature yang ada di baris pertama sebagai contoh
+            int countFeature = featureList[0, 0].Length; // hitung feature yang ada di baris pertama sebagai contoh
+
+            List<string> featureType = new List<string>(); // buat list untuk tampung tipe-tipe untuk setiap feature
 
             for (int i = 0; i < countFeature; i++) // loop untuk setiap feature yang ada di array2d
             {
-                List<string> featureType = new List<string>(); // buat list untuk tampung tipe-tipe untuk setiap feature
-
                 for (int j = 0; j < rowCount; j++) // loop untuk setiap baris di array2d
                 {
                     string feature = featureList[j, i]; // tampung isi dari array di baris j kolom i
@@ -130,8 +134,128 @@ namespace ProjectDatMinUAS
                     }
                 }
 
-                
+                // inisialisasi array2d untuk simpan data tipe feature setiap tipe klasifikasi
+                int[,] featureEveryClassType = new int[classType.Count, featureType.Count];
+
+                for (int j = 0; j < classType.Count; j++) // loop setiap tipe class di dataset
+                {
+                    for (int k = 0; k < featureType.Count; k++) // loop setiap tipe feature untuk setiap tipe klasifikasi
+                    {
+                        featureEveryClassType[j, k] = 0; // inisialisasi setiap baris dan kolom di array = 0
+                    }
+                }
+
+                for (int j = 0; j < colCount - 1; j++) // loop setiap feature yang ada di setiap baris i kolom j
+                {
+                    for (int k = 0; k < rowCount; k++)
+                    {
+                        for (int l = 0; l < featureType.Count; l++) // loop setiap tipe feature yang ada di setiap kolom
+                        {
+                            // cek apakah feature yang ada di baris j kolom k sama dengan tipe feature di index l
+                            if (featureList[k, j] == featureType[l])
+                            {
+                                for (int m = 0; m < classType.Count; m++) // loop untuk setiap tipe klasifikasi di dataset
+                                {
+                                    // cek apakah klasifikasi di index k sama dengan tipe klasifikasi di index m
+                                    if (classification[k] == classType[m])
+                                    {
+                                        // apabila sama, tambahkan 1 ke dalam tipe feature untuk setiap klasifikasi yg sesuai
+                                        featureEveryClassType[m, l]++;
+
+                                        break; // apabila sudah ada 1 yg sesuai loop kembali ke loop diluar ini
+                                    }
+                                }
+
+                                // apabila feature di dataset sama dengan yang ada di tipe feature, maka loop berhenti dan keluar
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                List<int> sumFeatureEveryClassType = new List<int>(); //inisialisasi untuk hitung jumlah tipe feature di setiap kolom
+
+                for (int j = 0; j < featureEveryClassType.GetLength(1); j++) // loop untuk setiap kolom di setiap tipe feature
+                {
+                    int sum = 0; // inisialisasi jumlah = 0
+
+                    for (int k = 0; k < featureEveryClassType.GetLength(0); k++) // loop untuk setiap baris di setiap tipe feature
+                    {
+                        sum += featureEveryClassType[k, j]; // jumlahkan nilai array baris j kolom i ke dalam sum
+                    }
+
+                    sumFeatureEveryClassType.Add(sum); // setelah selesai, maka tambahkan hasil tersebut ke dalam list
+                }
+
+                List<double> giniEveryFeature = new List<double>(); // inisialisasi list untuk menyimpan gini setiap feature
+
+                // loop untuk setiap kolom fitur di setiap klasifikasi
+                for (int j = 0; j < featureEveryClassType.GetLength(1); j++)
+                {
+                    double giniFeature = 0; // inisialisasi nilai gini feature = 0
+
+                    // loop untuk setiap baris fitur di setiap klasifikasi
+                    for (int k = 0; k < featureEveryClassType.GetLength(0); k++)
+                    {
+                        // hitung nilai gini setiap feature dengan cara total setiap fitur di setiap klaifikasi dibagi total fitur di kolom kemudian dikuadratkan
+                        giniFeature += Math.Pow((double)featureEveryClassType[k, j] / sumFeatureEveryClassType[j], 2);
+                    }
+
+                    // hitung gini dengan cara 1 - nilai gini setiap feature
+                    giniFeature = Math.Round((1 - giniFeature), 4);
+
+                    giniEveryFeature.Add(giniFeature); // masukkan nilai gini feature ke dalam list
+                }
+
+                int sumEveryTypeFeature = 0; // inisialisasi hitung jumlah semua fitur setiap kolom
+
+                //loop untuk menghitung jumlah semua fitur setiap kolom dari jumlah tipe fitur di setiap kolom
+                for (int j = 0; j < sumFeatureEveryClassType.Count; j++) 
+                {
+                    // jumlah tipe fitur di setiap kolom ditambahkan dengan jumlah semua fitur setiap kolom
+                    sumEveryTypeFeature += sumFeatureEveryClassType[j]; 
+                }
+
+                double weightedGINI = 0; // inisialisasi untuk menghitung weighted gini setiap kolom
+
+                // loop untuk menghitung weighted gini setiap tipe fitur di setiap kolom
+                for (int j = 0; j < sumFeatureEveryClassType.Count; j++) 
+                {
+                    // hitung weighted gini dengan cara total tipe feature dibagi dengan total fitur di setiap kolom dikali dengan gini setiap tipe fitur
+                    double weightedGainEveryTypeFeature = (double)sumFeatureEveryClassType[j] / sumEveryTypeFeature * giniEveryFeature[j];
+
+                    // hasil perhitungan di atas ditambahkan ke weighted gini
+                    weightedGINI += weightedGainEveryTypeFeature;
+                }
+
+                // hitung gain feature setiap kolom dengan cara gini parent dikurangi weighted gini
+                double gainFeature = Math.Round(GINIParent - weightedGINI, 4);
+
+                listBoxBest.Items.Add("Hasil Gain Feat Feature " + dataGridViewBest.Columns[i].HeaderText + " adalah " + gainFeature);
+
+                gainFeatEveryFeature.Add(gainFeature); // tambahkan hasil gain feature setiap kolom ke list
+
+                listFeatureName.Add(dataGridViewBest.Columns[i].HeaderText); // tambahkan nama feature ke dalam list
+
+                featureType.Clear(); // kosongkan list untuk menampung tipe feature di kolom berikutnya
             }
+
+            string bestSplit = ""; // simpan feature best split
+
+            double valueBestSplit = -1; // simpan gain feature best split
+
+            for (int i = 0; i < gainFeatEveryFeature.Count; i++) // loop hasil gain feature setiap kolom
+            {
+                if (gainFeatEveryFeature[i] > valueBestSplit) // cek apakah gain feature lebih besar dari gain featue sebelumnya
+                {
+                    // jika iya, best split diisi dengan nama feature dan valuenya
+                    valueBestSplit = gainFeatEveryFeature[i]; 
+
+                    bestSplit = listFeatureName[i];
+                }
+            }
+
+            listBoxBest.Items.Add("Best Split untuk dataset tersebut adalah " + bestSplit + " dengan gain feature = " + valueBestSplit);
         }
 
         public void EntropyCount()
@@ -143,13 +267,24 @@ namespace ProjectDatMinUAS
         {
             if (comboBoxDistance.SelectedIndex > -1)
             {
-                if (comboBoxDistance.SelectedIndex == 0)
+                listBoxBest.Items.Clear();
+
+                if (dataGridViewBest.DataSource != null)
                 {
-                    GINICount();
+                    if (comboBoxDistance.SelectedIndex == 0)
+                    {
+                        GINICount();
+                    }
+                    else if (comboBoxDistance.SelectedIndex == 1)
+                    {
+                        EntropyCount();
+                    }
                 }
-                else if (comboBoxDistance.SelectedIndex == 1)
+                else
                 {
-                    EntropyCount();
+                    comboBoxDistance.SelectedIndex = -1;
+
+                    MessageBox.Show("Data belum dimasukkan");
                 }
             }
         }

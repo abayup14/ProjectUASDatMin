@@ -52,23 +52,32 @@ namespace ProjectDatMinUAS
             {
                 dataGridViewHasil.Rows.Clear();
 
-                if (comboBoxDistance.SelectedIndex == 0)
+                if (dataGridViewProx.DataSource != null)
                 {
-                    int[,] proxMatrix = proximityMatrix.ManhattanDistance(dataGridViewProx);
+                    if (comboBoxDistance.SelectedIndex == 0)
+                    {
+                        int[,] proxMatrix = proximityMatrix.ManhattanDistance(dataGridViewProx);
 
-                    FormatDataGridHasil(proxMatrix);
+                        FormatDataGridHasil(proxMatrix);
+                    }
+                    else if (comboBoxDistance.SelectedIndex == 1)
+                    {
+                        double[,] proxMatrix = proximityMatrix.EuclideanDistance(dataGridViewProx);
+
+                        FormatDataGridHasil(proxMatrix);
+                    }
+                    else if (comboBoxDistance.SelectedIndex == 2)
+                    {
+                        int[,] proxMatrix = proximityMatrix.SupremumDistance(dataGridViewProx);
+
+                        FormatDataGridHasil(proxMatrix);
+                    }
                 }
-                else if (comboBoxDistance.SelectedIndex == 1)
+                else
                 {
-                    double[,] proxMatrix = proximityMatrix.EuclideanDistance(dataGridViewProx);
+                    comboBoxDistance.SelectedIndex = -1;
 
-                    FormatDataGridHasil(proxMatrix);
-                }
-                else if (comboBoxDistance.SelectedIndex == 2)
-                {
-                    int[,] proxMatrix = proximityMatrix.SupremumDistance(dataGridViewProx);
-
-                    FormatDataGridHasil(proxMatrix);
+                    MessageBox.Show("Data belum dimasukkan");
                 }
             }
         }

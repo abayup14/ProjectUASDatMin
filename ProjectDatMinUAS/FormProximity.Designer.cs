@@ -108,8 +108,8 @@
             this.comboBoxDistance.FormattingEnabled = true;
             this.comboBoxDistance.Items.AddRange(new object[] {
             "Manhattan Distance (r = 1)",
-            "Eucledian Distance (r = 2)",
-            "Supremum Distance (r = unlimited)"});
+            "Euclidean Distance (r = 2)",
+            "Supremum Distance (r = ∞)"});
             this.comboBoxDistance.Location = new System.Drawing.Point(678, 13);
             this.comboBoxDistance.Name = "comboBoxDistance";
             this.comboBoxDistance.Size = new System.Drawing.Size(390, 30);
