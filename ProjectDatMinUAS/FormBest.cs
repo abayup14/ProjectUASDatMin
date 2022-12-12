@@ -242,7 +242,7 @@ namespace ProjectDatMinUAS
 
             string bestSplit = ""; // simpan feature best split
 
-            double valueBestSplit = -1; // simpan gain feature best split
+            double valueBestSplit = -1; // simpan gain feature best split, inisialisasi = -1
 
             for (int i = 0; i < gainFeatEveryFeature.Count; i++) // loop hasil gain feature setiap kolom
             {
