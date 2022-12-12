@@ -116,6 +116,7 @@ namespace ProjectDatMinUAS
             GINIParent = 1 - GINIParent; // rumus hitung gini parent = 1 - total semua gini setiap tipe kelas
 
             listBoxBest.Items.Add("Hasil GINI parent : " + GINIParent);
+            listBoxBest.Items.Add("");
 
 
             int countFeature = featureList[0, 0].Length; // hitung feature yang ada di baris pertama sebagai contoh
@@ -255,6 +256,7 @@ namespace ProjectDatMinUAS
                 }
             }
 
+            listBoxBest.Items.Add("");
             listBoxBest.Items.Add("Best Split untuk dataset tersebut adalah " + bestSplit + " dengan gain feature = " + valueBestSplit);
         }
 
