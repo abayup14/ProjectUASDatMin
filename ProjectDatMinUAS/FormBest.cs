@@ -123,8 +123,6 @@ namespace ProjectDatMinUAS
             listBoxBest.Items.Add("");
 
 
-            //int countFeature = featureList[0].Count; // hitung feature yang ada di baris pertama sebagai contoh
-
             List<object> featureType = new List<object>(); // buat list untuk tampung tipe-tipe untuk setiap feature
 
             for (int i = 0; i < featureList[0].Count; i++) // loop untuk setiap feature yang ada di list
@@ -152,7 +150,7 @@ namespace ProjectDatMinUAS
                         typeFeature.Add(0); // inisialisasi setiap baris dan kolom di array = 0
                     }
 
-                    countFeatureEveryClassType.Add(typeFeature);
+                    countFeatureEveryClassType.Add(typeFeature); // tambahkan hasil setiap row ke list utama
                 }
 
                 for (int j = 0; j < colCount - 1; j++) // loop setiap feature yang ada di setiap baris j kolom k
@@ -241,11 +239,11 @@ namespace ProjectDatMinUAS
                 //hitung gain feature setiap kolom dengan cara gini parent dikurangi weighted gini
                 double gainFeature = Math.Round(GINIParent - weightedGINI, 4);
 
-                listBoxBest.Items.Add("Hasil Gain Feat Feature " + dataGridViewBest.Columns[i].HeaderText + " adalah " + gainFeature);
-
                 gainFeatEveryFeature.Add(gainFeature); // tambahkan hasil gain feature setiap kolom ke list
 
                 listFeatureName.Add(dataGridViewBest.Columns[i].HeaderText); // tambahkan nama feature ke dalam list
+
+                listBoxBest.Items.Add("Hasil Gain Feat Feature " + dataGridViewBest.Columns[i].HeaderText + " adalah " + gainFeature);
 
                 featureType.Clear(); // kosongkan list untuk menampung tipe feature di kolom berikutnya
             }
