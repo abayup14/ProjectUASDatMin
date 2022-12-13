@@ -30,11 +30,11 @@
         {
             this.buttonBuka = new System.Windows.Forms.Button();
             this.dataGridViewBest = new System.Windows.Forms.DataGridView();
-            this.listBoxBest = new System.Windows.Forms.ListBox();
             this.buttonSimpan = new System.Windows.Forms.Button();
             this.comboBoxDistance = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.listBoxBest = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewBest)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,15 +59,6 @@
             this.dataGridViewBest.Size = new System.Drawing.Size(573, 516);
             this.dataGridViewBest.TabIndex = 2;
             // 
-            // listBoxBest
-            // 
-            this.listBoxBest.FormattingEnabled = true;
-            this.listBoxBest.ItemHeight = 16;
-            this.listBoxBest.Location = new System.Drawing.Point(593, 55);
-            this.listBoxBest.Name = "listBoxBest";
-            this.listBoxBest.Size = new System.Drawing.Size(573, 516);
-            this.listBoxBest.TabIndex = 4;
-            // 
             // buttonSimpan
             // 
             this.buttonSimpan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -90,6 +81,7 @@
             this.comboBoxDistance.Name = "comboBoxDistance";
             this.comboBoxDistance.Size = new System.Drawing.Size(390, 30);
             this.comboBoxDistance.TabIndex = 13;
+            this.comboBoxDistance.SelectedIndexChanged += new System.EventHandler(this.comboBoxDistance_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -111,16 +103,25 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Data";
             // 
+            // listBoxBest
+            // 
+            this.listBoxBest.FormattingEnabled = true;
+            this.listBoxBest.ItemHeight = 16;
+            this.listBoxBest.Location = new System.Drawing.Point(593, 55);
+            this.listBoxBest.Name = "listBoxBest";
+            this.listBoxBest.Size = new System.Drawing.Size(573, 516);
+            this.listBoxBest.TabIndex = 15;
+            // 
             // FormBest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1178, 643);
+            this.Controls.Add(this.listBoxBest);
             this.Controls.Add(this.comboBoxDistance);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonSimpan);
-            this.Controls.Add(this.listBoxBest);
             this.Controls.Add(this.buttonBuka);
             this.Controls.Add(this.dataGridViewBest);
             this.Name = "FormBest";
@@ -136,10 +137,10 @@
 
         private System.Windows.Forms.Button buttonBuka;
         private System.Windows.Forms.DataGridView dataGridViewBest;
-        private System.Windows.Forms.ListBox listBoxBest;
         private System.Windows.Forms.Button buttonSimpan;
         private System.Windows.Forms.ComboBox comboBoxDistance;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox listBoxBest;
     }
 }
