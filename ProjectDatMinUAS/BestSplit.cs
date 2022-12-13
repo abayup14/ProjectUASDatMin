@@ -94,6 +94,8 @@ namespace ProjectDatMinUAS
             listBox.Items.Add("Hasil GINI parent : " + GINIParent);
             listBox.Items.Add("");
 
+
+
             List<double> gainFeatEveryFeature = new List<double>(); // list untuk menyimpan gain setiap feature
 
             List<string> listFeatureName = new List<string>(); // list untuk menyimpan nama feature
