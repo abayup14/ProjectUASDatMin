@@ -91,6 +91,7 @@ namespace ProjectDatMinUAS
 
             GINIParent = 1 - Math.Round(GINIParent, 4); // rumus hitung gini parent = 1 - total semua gini setiap tipe kelas
 
+            listBox.Items.Add("=====USING GINI=====");
             listBox.Items.Add("Hasil GINI parent : " + GINIParent);
             listBox.Items.Add("");
 
@@ -242,7 +243,8 @@ namespace ProjectDatMinUAS
 
             listBox.Items.Add("");
             listBox.Items.Add("Best Split untuk dataset tersebut adalah " + bestSplit);
-            listBox.Items.Add("Nilai gain feature feature tersebut adalah " + valueBestSplit);
+            listBox.Items.Add("Nilai gain feature tersebut adalah " + valueBestSplit);
+            listBox.Items.Add("====================");
         }
     }
 }
