@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectDatMinUAS
 {
-    class BestSplit
+    public class BestSplit
     {
     }
 }
