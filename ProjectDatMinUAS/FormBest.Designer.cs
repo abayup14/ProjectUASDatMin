@@ -55,7 +55,7 @@
             this.dataGridViewBest.Name = "dataGridViewBest";
             this.dataGridViewBest.RowHeadersWidth = 51;
             this.dataGridViewBest.RowTemplate.Height = 24;
-            this.dataGridViewBest.Size = new System.Drawing.Size(573, 516);
+            this.dataGridViewBest.Size = new System.Drawing.Size(610, 516);
             this.dataGridViewBest.TabIndex = 2;
             // 
             // listBoxBest
@@ -63,9 +63,9 @@
             this.listBoxBest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxBest.FormattingEnabled = true;
             this.listBoxBest.ItemHeight = 20;
-            this.listBoxBest.Location = new System.Drawing.Point(593, 55);
+            this.listBoxBest.Location = new System.Drawing.Point(628, 55);
             this.listBoxBest.Name = "listBoxBest";
-            this.listBoxBest.Size = new System.Drawing.Size(651, 524);
+            this.listBoxBest.Size = new System.Drawing.Size(616, 524);
             this.listBoxBest.TabIndex = 4;
             // 
             // comboBoxDistance

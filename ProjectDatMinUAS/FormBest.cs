@@ -134,7 +134,7 @@ namespace ProjectDatMinUAS
 
                     if (!featureType.Contains(feature)) // cek apakah list tipe feature sudah berisi feature yang ada di kolom tersebut 
                     {
-                        featureType.Add(feature.ToString()); // jika tidak ada, masukkan feature tersebut ke list tersebut
+                        featureType.Add(feature); // jika tidak ada, masukkan feature tersebut ke list tersebut
                     }
                 }
 
@@ -243,7 +243,7 @@ namespace ProjectDatMinUAS
 
                 listFeatureName.Add(dataGridViewBest.Columns[i].HeaderText); // tambahkan nama feature ke dalam list
 
-                listBoxBest.Items.Add("Hasil Gain Feat Feature " + dataGridViewBest.Columns[i].HeaderText + " adalah " + gainFeature);
+                listBoxBest.Items.Add("Hasil Gain Feature " + dataGridViewBest.Columns[i].HeaderText + " adalah " + gainFeature);
 
                 featureType.Clear(); // kosongkan list untuk menampung tipe feature di kolom berikutnya
             }
