@@ -60,12 +60,12 @@
             // 
             // listBoxBest
             // 
-            this.listBoxBest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxBest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxBest.FormattingEnabled = true;
-            this.listBoxBest.ItemHeight = 20;
+            this.listBoxBest.ItemHeight = 18;
             this.listBoxBest.Location = new System.Drawing.Point(628, 55);
             this.listBoxBest.Name = "listBoxBest";
-            this.listBoxBest.Size = new System.Drawing.Size(616, 524);
+            this.listBoxBest.Size = new System.Drawing.Size(626, 526);
             this.listBoxBest.TabIndex = 4;
             // 
             // comboBoxDistance
@@ -76,7 +76,7 @@
             this.comboBoxDistance.Items.AddRange(new object[] {
             "Best Split dengan GINI",
             "Best Split dengan Entropy"});
-            this.comboBoxDistance.Location = new System.Drawing.Point(677, 9);
+            this.comboBoxDistance.Location = new System.Drawing.Point(713, 9);
             this.comboBoxDistance.Name = "comboBoxDistance";
             this.comboBoxDistance.Size = new System.Drawing.Size(390, 30);
             this.comboBoxDistance.TabIndex = 13;
@@ -86,7 +86,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(588, 10);
+            this.label2.Location = new System.Drawing.Point(624, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 25);
             this.label2.TabIndex = 12;
@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1256, 643);
+            this.ClientSize = new System.Drawing.Size(1267, 643);
             this.Controls.Add(this.comboBoxDistance);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
