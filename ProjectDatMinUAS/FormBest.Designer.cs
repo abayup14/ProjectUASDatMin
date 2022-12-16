@@ -60,12 +60,12 @@
             // 
             // listBoxBest
             // 
-            this.listBoxBest.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxBest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxBest.FormattingEnabled = true;
-            this.listBoxBest.ItemHeight = 20;
+            this.listBoxBest.ItemHeight = 18;
             this.listBoxBest.Location = new System.Drawing.Point(628, 55);
             this.listBoxBest.Name = "listBoxBest";
-            this.listBoxBest.Size = new System.Drawing.Size(616, 524);
+            this.listBoxBest.Size = new System.Drawing.Size(671, 508);
             this.listBoxBest.TabIndex = 4;
             // 
             // comboBoxDistance
@@ -106,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1256, 643);
+            this.ClientSize = new System.Drawing.Size(1308, 643);
             this.Controls.Add(this.comboBoxDistance);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
