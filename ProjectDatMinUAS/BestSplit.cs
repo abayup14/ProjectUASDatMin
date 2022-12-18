@@ -95,8 +95,6 @@ namespace ProjectDatMinUAS
             listBox.Items.Add("Hasil GINI parent : " + GINIParent);
             listBox.Items.Add("");
 
-
-
             List<double> gainFeatEveryFeature = new List<double>(); // list untuk menyimpan gain setiap feature
 
             List<string> listFeatureName = new List<string>(); // list untuk menyimpan nama feature
@@ -115,6 +113,8 @@ namespace ProjectDatMinUAS
                         featureType.Add(feature); // jika tidak ada, masukkan feature tersebut ke list tersebut
                     }
                 }
+
+
 
                 // inisialisasi list dalam list untuk simpan jumlah data tipe feature setiap tipe klasifikasi
                 List<List<int>> countFeatureEveryClassType = new List<List<int>>();
@@ -314,7 +314,7 @@ namespace ProjectDatMinUAS
                 }
             }
 
-            // hitung gini parent, inisialisasi variable untuk menampung hasil gini parent
+            // hitung entropy parent, inisialisasi variable untuk menampung hasil entropy parent
             double entropyParent = 0;
 
             // loop untuk menghitung entropy setiap tipe klasifikasi
@@ -325,7 +325,7 @@ namespace ProjectDatMinUAS
 
                 double entropy = (-probability * Math.Log(probability, 2));
 
-                // kuadratkan hasil gini setiap klasifikasi kemudian tambahkan ke hasil gini parent
+                // kuadratkan hasil entropy setiap klasifikasi kemudian tambahkan ke hasil entropy parent
                 entropyParent += entropy;
             }
 
@@ -409,13 +409,13 @@ namespace ProjectDatMinUAS
                     sumFeatureEveryClassType.Add(sum); // setelah selesai, maka tambahkan hasil tersebut ke dalam list
                 }
 
-                List<double> entropyEveryFeature = new List<double>(); // inisialisasi list untuk menyimpan gini setiap feature
+                List<double> entropyEveryFeature = new List<double>(); // inisialisasi list untuk menyimpan entropy setiap feature
 
                 // loop untuk setiap kolom fitur di setiap klasifikasi
                 for (int j = 0; j < countFeatureEveryClassType[0].Count; j++)
                 {
-                    double entropyFeature = 0; // inisialisasi nilai gini feature = 0
-                    double entropy = 0.0;
+                    double entropyFeature = 0; // inisialisasi nilai entropy feature = 0
+                    double entropy = 0;
                     // loop untuk setiap baris fitur di setiap klasifikasi
                     for (int k = 0; k < countFeatureEveryClassType.Count; k++)
                     {
@@ -429,14 +429,14 @@ namespace ProjectDatMinUAS
                             entropy = 0;
                         }
 
-                        // kuadratkan hasil gini setiap klasifikasi kemudian tambahkan ke hasil gini parent
+                        // kuadratkan hasil entropy setiap klasifikasi kemudian tambahkan ke hasil entropy parent
                         entropyFeature += entropy;
                     }
 
-                    // hitung gini dengan cara 1 - nilai gini setiap feature
+                    // hitung entropy dengan cara 1 - nilai entropy setiap feature
                     entropyFeature = Math.Round(entropyFeature, 4);
 
-                    entropyEveryFeature.Add(entropyFeature); // masukkan nilai gini feature ke dalam list
+                    entropyEveryFeature.Add(entropyFeature); // masukkan nilai entropy feature ke dalam list
                 }
 
                 int sumEveryTypeFeature = 0; // inisialisasi hitung jumlah semua fitur setiap kolom
@@ -448,19 +448,19 @@ namespace ProjectDatMinUAS
                     sumEveryTypeFeature += sumFeatureEveryClassType[j];
                 }
 
-                double gainSplit = 0; // inisialisasi untuk menghitung weighted gini setiap kolom
+                double gainSplit = 0; // inisialisasi untuk menghitung weighted entropy setiap kolom
 
-                // loop untuk menghitung weighted gini setiap tipe fitur di setiap kolom
+                // loop untuk menghitung weighted entropy setiap tipe fitur di setiap kolom
                 for (int j = 0; j < sumFeatureEveryClassType.Count; j++)
                 {
-                    // hitung weighted gini dengan cara total tipe feature dibagi dengan total fitur di setiap kolom dikali dengan gini setiap tipe fitur
+                    // hitung weighted entropy dengan cara total tipe feature dibagi dengan total fitur di setiap kolom dikali dengan entropy setiap tipe fitur
                     double weightedGainEveryTypeFeature = (double)sumFeatureEveryClassType[j] / sumEveryTypeFeature * entropyEveryFeature[j];
 
-                    // hasil perhitungan di atas ditambahkan ke weighted gini
+                    // hasil perhitungan di atas ditambahkan ke weighted entropy
                     gainSplit += weightedGainEveryTypeFeature;
                 }
 
-                //hitung gain feature setiap kolom dengan cara gini parent dikurangi weighted gini
+                //hitung gain feature setiap kolom dengan cara entropy parent dikurangi weighted entropy
                 double gainFeature = Math.Round(entropyParent - gainSplit, 4);
 
                 gainFeatEveryFeature.Add(gainFeature); // tambahkan hasil gain feature setiap kolom ke list
