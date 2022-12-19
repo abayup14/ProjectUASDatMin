@@ -183,6 +183,11 @@ namespace ProjectDatMinUAS
                     {
                         // hitung nilai gini setiap feature dengan cara total setiap fitur di setiap klaifikasi dibagi total fitur di kolom kemudian dikuadratkan
                         giniFeature += Math.Pow((double)countFeatureEveryClassType[k][j] / sumFeatureEveryClassType[j], 2);
+
+                        if (double.IsNaN(giniFeature) == true)
+                        {
+                            giniFeature = 0;
+                        }
                     }
 
                     // hitung gini dengan cara 1 - nilai gini setiap feature
@@ -413,6 +418,7 @@ namespace ProjectDatMinUAS
                 for (int j = 0; j < countFeatureEveryClassType[0].Count; j++)
                 {
                     double entropyFeature = 0; // inisialisasi nilai entropy feature = 0
+
                     double entropy = 0.0;
                     // loop untuk setiap baris fitur di setiap klasifikasi
                     for (int k = 0; k < countFeatureEveryClassType.Count; k++)
