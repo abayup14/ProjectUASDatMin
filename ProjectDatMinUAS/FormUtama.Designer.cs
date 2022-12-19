@@ -58,14 +58,14 @@
             // proximityMatrixToolStripMenuItem
             // 
             this.proximityMatrixToolStripMenuItem.Name = "proximityMatrixToolStripMenuItem";
-            this.proximityMatrixToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.proximityMatrixToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.proximityMatrixToolStripMenuItem.Text = "Proximity Matrix";
             this.proximityMatrixToolStripMenuItem.Click += new System.EventHandler(this.proximityMatrixToolStripMenuItem_Click);
             // 
             // bestSplitToolStripMenuItem
             // 
             this.bestSplitToolStripMenuItem.Name = "bestSplitToolStripMenuItem";
-            this.bestSplitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.bestSplitToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.bestSplitToolStripMenuItem.Text = "Best Split";
             this.bestSplitToolStripMenuItem.Click += new System.EventHandler(this.bestSplitToolStripMenuItem_Click);
             // 
@@ -76,7 +76,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.menuStrip1);
             this.Name = "FormUtama";
-            this.Text = "FormUtama";
+            this.Text = "Project Data Mining";
             this.Load += new System.EventHandler(this.FormUtama_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
