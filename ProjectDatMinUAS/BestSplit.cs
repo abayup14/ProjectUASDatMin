@@ -114,8 +114,6 @@ namespace ProjectDatMinUAS
                     }
                 }
 
-
-
                 // inisialisasi list dalam list untuk simpan jumlah data tipe feature setiap tipe klasifikasi
                 List<List<int>> countFeatureEveryClassType = new List<List<int>>();
 
@@ -415,7 +413,7 @@ namespace ProjectDatMinUAS
                 for (int j = 0; j < countFeatureEveryClassType[0].Count; j++)
                 {
                     double entropyFeature = 0; // inisialisasi nilai entropy feature = 0
-                    double entropy = 0;
+                    double entropy = 0.0;
                     // loop untuk setiap baris fitur di setiap klasifikasi
                     for (int k = 0; k < countFeatureEveryClassType.Count; k++)
                     {
